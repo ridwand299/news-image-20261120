@@ -1,24 +1,26 @@
-"""Entry program for make.fun bounty news-image-20261120.
+"""Entry point for the 20 November 2026 news-image bounty.
 
-Copies the bundled entry.png (1024x1024, 100382 bytes) to
-/output/entry.png. Standard library only, no network, no clock,
-no randomness -- both runs write identical bytes. This is the
-"simplest program" the bounty brief explicitly allows: a program
-that copies an image the repository holds.
-The image itself was rendered locally by build_image.py (Pillow).
+Copies the bundled entry.png to /output/entry.png when that
+directory exists, otherwise to ./output/entry.png.
+
+Deterministic copy: shutil.copyfile writes the bundled bytes
+unchanged, with no clock, network, or randomness involved, so
+running this program twice writes identical bytes every time.
 """
+
 import shutil
 from pathlib import Path
 
+HERE = Path(__file__).resolve().parent
+SOURCE = HERE / "entry.png"
+
 
 def main():
-    # Deterministic copy: no clock, network, or randomness.
-    # shutil.copyfile writes the bundled entry.png bytes unchanged,
-    # so every run produces identical output.
-    src = Path(__file__).resolve().parent / "entry.png"
-    out = Path("/output/entry.png") if Path("/output").is_dir() else Path(__file__).resolve().parent / "output" / "entry.png"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(src, out)
+    target_dir = Path("/output") if Path("/output").is_dir() else HERE / "output"
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target = target_dir / "entry.png"
+    shutil.copyfile(SOURCE, target)
+    print(f"Wrote {target}")
 
 
 if __name__ == "__main__":

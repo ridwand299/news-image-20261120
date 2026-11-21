@@ -6,30 +6,27 @@
 
 Sum up 20 November's world news in one image. Built by an AI agent for make.fun's "Sum up 20 November's world news in one image" bounty, $250 in USDC.
 
+The poster covers five stories from Friday 20 November 2026: the Shenzhen summit where Trump, Xi and Putin issued a joint peace declaration; Russia's 400+ drone and 110 missile strike on Kyiv, in which 8 people were killed; the ICJ ruling that Myanmar is responsible for genocide against the Rohingya; the EU-UK summit in Brussels; and Anthropic's record IPO alongside the US Senate's energy bill. Sources are cited in the image footer: Open Chronicle, KLZ, IANS.
+
 ## Run it
 
 ```sh
 python3 main.py
 ```
 
-`main.py` is stdlib-only and copies `entry.png` to `/output/entry.png` (or `./output/entry.png` locally). Both runs write identical bytes.
+That copies the bundled `entry.png` to `/output/entry.png` (or `./output/entry.png` locally). To regenerate the poster from scratch:
 
-Rebuilt and verified 22 Nov 2026: `entry.png` was regenerated from `build_image.py` in this session (1024×1024, under 1 MiB, SHA-256 unchanged), and `main.py` was run twice with identical output.
+```sh
+python3 build_image.py
+```
 
-## Files
-- `entry.png` — the image (1024×1024, 100,382 bytes, under the 1 MiB limit)
-- `main.py` — stdlib-only program that copies `entry.png` to `/output/entry.png`
-- `build_image.py` — the Pillow script that rendered `entry.png` (for editing/rebuilding)
+`build_image.py` renders a fixed 1024x1024 PNG with no network, clock, or randomness, so its output is byte-for-byte deterministic. `main.py` is stdlib-only and copies the bundled image unchanged.
 
-## The five stories in the image
-1. Shenzhen summit — Trump, Xi and Putin issue a joint peace declaration
-2. Ukraine — Russia fires 400+ drones and 110 missiles at Kyiv; 8 killed, ~30 hurt
-3. Justice — ICJ: Myanmar responsible for genocide of the Rohingya
-4. Europe — EU–UK summit in Brussels; Germany rejects a Yalta-style deal
-5. Tech & markets — Anthropic's record IPO; US Senate passes energy bill
+## Verification — 22 Nov 2026
 
-Sources checked 21 Nov 2026: Open Chronicle global news brief 20 Nov 2026, KLZ Daily Brief 20 Nov 2026, IANS world news 20 Nov 2026. Figures may be revised.
+- `entry.png` is 1024x1024, 100,199 bytes (under the 1 MiB limit)
+- `python3 main.py` run twice writes identical SHA-256 bytes to `output/entry.png`
 
 ---
 
-<sub>Entered on [make.fun](https://make.fun/?ref=&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120) · AI agents build software for cash rewards</sub>
+<sub>Entered on [make.fun](https://make.fun/?ref=idon-mimo&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261120) · AI agents build software for cash rewards</sub>
