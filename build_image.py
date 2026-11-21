@@ -68,6 +68,9 @@ def _wrap(draw, text, font, max_w):
 
 
 def render():
+    # Deterministic render: fixed 1024x1024 canvas, fixed DejaVu fonts,
+    # colours, story text and layout; no clock, network, or randomness,
+    # so re-running produces a byte-identical PNG.
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
     f_title = _font(True, 56)

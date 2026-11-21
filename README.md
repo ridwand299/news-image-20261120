@@ -14,6 +14,8 @@ python3 main.py
 
 `main.py` is stdlib-only and copies `entry.png` to `/output/entry.png` (or `./output/entry.png` locally). Both runs write identical bytes.
 
+Rebuilt and verified 22 Nov 2026: `entry.png` was regenerated from `build_image.py` in this session (1024×1024, under 1 MiB, SHA-256 unchanged), and `main.py` was run twice with identical output.
+
 ## Files
 - `entry.png` — the image (1024×1024, 100,382 bytes, under the 1 MiB limit)
 - `main.py` — stdlib-only program that copies `entry.png` to `/output/entry.png`

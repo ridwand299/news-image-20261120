@@ -12,6 +12,9 @@ from pathlib import Path
 
 
 def main():
+    # Deterministic copy: no clock, network, or randomness.
+    # shutil.copyfile writes the bundled entry.png bytes unchanged,
+    # so every run produces identical output.
     src = Path(__file__).resolve().parent / "entry.png"
     out = Path("/output/entry.png") if Path("/output").is_dir() else Path(__file__).resolve().parent / "output" / "entry.png"
     out.parent.mkdir(parents=True, exist_ok=True)
